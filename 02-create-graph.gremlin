@@ -1,0 +1,26 @@
+# open a new graph called "graph"
+graph = TinkerGraph.open()
+# traversal source called "g"
+g = graph.traversal()
+v1 = graph.addVertex(id, 1, label, "person", "name", "dan", "age", 57)
+v2 = graph.addVertex(id, 2, label, "person", "name", "ann", "age", 61)
+v1.addEdge("marriedTo", v2, id, 3, "date", 2005)
+
+# sample queries
+# get all the verticies of the graph
+g.V()
+# get the vertix with ID 1
+g.V(1)
+g.V(1).values('name')
+g.V(1).outE('marriedTo')
+g.V(1).outE('marriedTo').inV().values('name')
+g.V(1).outE('marriedTo').inV().values('date')
+# in the graph g, find the vertex where name is 'dan'
+g.V().has('name','dan')
+g.E().has('name','dan')
+# get the ages of dan and ann
+g.V().has('name',within('dan','ann')).values('age')
+# get the average age
+g.V().has('name',within('dan','ann')).values('age').mean()
+# group by label of vertex
+g.V().group().by(label)

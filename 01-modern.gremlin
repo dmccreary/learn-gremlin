@@ -1,0 +1,10 @@
+# load the modern demo graph
+graph = TinkerFactory.createModern()
+#
+g = graph.traversal()
+# list all the verticies
+g.V()
+# get the vertix with ID 1
+g.V(1)
+# get the name of the first vertix
+g.V(1).values('name')
