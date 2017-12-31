@@ -8,3 +8,19 @@ g.V()
 g.V(1)
 # get the name of the first vertix
 g.V(1).values('name')
+# list the names of all the people that marko knows
+g.V().has('name','marko').out('knows').values('name')
+
+# set the variable marko to be the vertix with the name marko
+marko = g.V().has('name','marko').next()
+# list the verticies that marko knows
+g.V(marko).out('knows')
+
+# list the names of all the people that marko knows
+g.V(marko).out('knows').values('name')
+
+# show the vertex paths to the people that marko knows
+g.V(marko).out('knows').values('name').path()
+
+# repeat loop listing names that marko knows
+g.V(marko).repeat(out()).times(2).values('name')
